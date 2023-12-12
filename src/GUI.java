@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUI extends JFrame {
-    JButton newCard = new JButton("New Card");
-    JButton noMoreCards = new JButton("No more cards");
+    JButton newCard = new JButton("Hit me!");
+    JButton noMoreCards = new JButton("Stop!");
     JButton shuffle = new JButton("Shuffle Deck");
     JButton newGame = new JButton("New game");
     ImageIcon cardBack = new ImageIcon("Cards/Background/cardBack_blue2.png");

@@ -6,7 +6,6 @@ public class BlackJack implements ActionListener {
     
     DeckOfCards deckOfCards = new DeckOfCards();
     GUI gui = new GUI();
-    
     int numberOfCardsInDeck = 51;
     Random random = new Random();
     int playerScore = 0;
@@ -19,19 +18,21 @@ public class BlackJack implements ActionListener {
         gui.newGame.addActionListener(this);
         
         playerPlay();
+        
         playerPlay();
         
     }
     public void playerPlay(){
         Card tempCard;
         tempCard = deckOfCards.getDeckOfCards().get(randomCard());
+        System.out.println(tempCard.toString());
         gui.playerHandPanel.add(tempCard.getCardImage());
         playerScore += checkCardValue(tempCard);
         gui.playerScoreLabel.setText(String.valueOf(playerScore));
         guiRepaint();
     }
     public void npcPlay(){
-        while (npcScore < playerScore && npcScore < 21) {
+        while (npcScore < 17) {
             Card tempCard;
             tempCard = deckOfCards.getDeckOfCards().get(randomCard());
             gui.NPCHandPanel.add(tempCard.getCardImage());
@@ -51,13 +52,15 @@ public class BlackJack implements ActionListener {
         return cardValue;
     }
 
-    public int randomCard() {//returnerar ett random tal mellan 0
+    public int randomCard() {
         int randomCard = random.nextInt(0, numberOfCardsInDeck);
-        removeCardFromDeck(deckOfCards.getDeckOfCards().get(randomCard));
+        removeCardFromDeck(deckOfCards.getDeckOfCards().get(randomCard)); //Händer före kortet läggs ut i guin och tar därför bort fel kort måste fixas
         return randomCard;
     }
-    public void removeCardFromDeck (Card card){//Tar bort kortet som dras ur leken
+    public void removeCardFromDeck (Card card){
+        
         deckOfCards.getDeckOfCards().remove(card);
+        System.out.println("Removed from deck " + card.toString());
         deckOfCards.getDeckOfCards().trimToSize();
         numberOfCardsInDeck --;
         updateDeckSize();
@@ -81,8 +84,10 @@ public class BlackJack implements ActionListener {
             gui.playerScoreLabel.setText(String.valueOf(playerScore));
             guiRepaint();
         } else if (e.getSource() == gui.noMoreCards) {
+            gui.newCard.setEnabled(false);
             npcPlay();
         } else if (e.getSource() == gui.newGame) {
+            gui.newCard.setEnabled(true);
             gui.playerHandPanel.removeAll();
             gui.NPCHandPanel.removeAll();
             gui.playerScoreLabel.setText("0");
