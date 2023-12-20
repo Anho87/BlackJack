@@ -60,7 +60,7 @@ public class BlackJackLogic implements ActionListener {
             userDrawCard();
             gui.updateUserHandImages(getCardImages(getUser()));
             gui.updateInstructions(Instructions.DECIDE_NEXT_MOVE.getInstruction() +
-                    " Din hand ger " + user.getHandValue() + " poäng och" +
+                    ". Din hand ger " + user.getHandValue() + " poäng och" +
                     " du har "  + chanceToGoBust() + "% chans att förlora om du drar ett kort till!");
             if (user.getHandValue() == -1) {
                 gui.updateInstructions(Instructions.BUSTED.getInstruction());
@@ -114,8 +114,8 @@ public class BlackJackLogic implements ActionListener {
         placeBet();
         dealCardsAtStartOfRound();
         gui.updateInstructions(Instructions.DECIDE_NEXT_MOVE.getInstruction() +
-                " Din hand ger " + user.getHandValue() + " poäng och" +
-                " du har " + chanceToGoBust() + "% chans att förlora om du drar ett kort till");
+                ". Din hand ger " + user.getHandValue() + " poäng och" +
+                " du har " + chanceToGoBust() + "% chans att förlora om du drar ett kort till!");
         updateAllHandImages();
     }
 
@@ -139,25 +139,7 @@ public class BlackJackLogic implements ActionListener {
         gui.setCurrentBet(currentBet);
         gui.updateInstructions(Instructions.DECIDE_NEXT_MOVE.getInstruction());
     }
-
-   
-    public int chanceToGoBust() {
-        int userHandValue = 21 - user.getHandValue();
-        int cardsLeftThatDoesntMakeUserGoBust = 0;
-        for (Card card : deckOfCards.getDeckOfCards()) {
-            if (card.getValue() <= userHandValue || (card.getValue() == 14 && userHandValue != 0)) {
-                cardsLeftThatDoesntMakeUserGoBust++;
-            } else if (card.getValue() > 10 && card.getValue() < 14 && userHandValue >= 10) {
-                cardsLeftThatDoesntMakeUserGoBust++;
-            }
-        }
-        double chanceToNoTGoBust = ((double)cardsLeftThatDoesntMakeUserGoBust / deckOfCards.getDeckOfCards().size()) * 100;
-        int roundedChanceToGoBust = (int) Math.floor(100 - chanceToNoTGoBust);
-        System.out.println(roundedChanceToGoBust);
-        return roundedChanceToGoBust;
-    }
     
-
     public List<JLabel> getCardImages(Player player) {
         List<JLabel> cardImages = new ArrayList<>();
         for (Card card : player.getCurrentHand()) {
@@ -214,6 +196,22 @@ public class BlackJackLogic implements ActionListener {
         int winnings = currentBet * 2;
         user.addToTotalCapital(winnings);
         return winnings;
+    }
+
+    public int chanceToGoBust() {
+        int userHandValue = 21 - user.getHandValue();
+        int cardsLeftThatDoesntMakeUserGoBust = 0;
+        for (Card card : deckOfCards.getDeckOfCards()) {
+            if (card.getValue() <= userHandValue || (card.getValue() == 14 && userHandValue != 0)) {
+                cardsLeftThatDoesntMakeUserGoBust++;
+            } else if (card.getValue() > 10 && card.getValue() < 14 && userHandValue >= 10) {
+                cardsLeftThatDoesntMakeUserGoBust++;
+            }
+        }
+        double chanceToNoTGoBust = ((double)cardsLeftThatDoesntMakeUserGoBust / deckOfCards.getDeckOfCards().size()) * 100;
+        int roundedChanceToGoBust = (int) Math.floor(100 - chanceToNoTGoBust);
+        System.out.println(roundedChanceToGoBust);
+        return roundedChanceToGoBust;
     }
 
     public List<Card> getUserCards() {
