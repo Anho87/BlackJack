@@ -47,8 +47,6 @@ public class DeckOfCards {
 
     public Card dealCard() {
         Card tempCard = deckOfCards.get(0);
-        System.out.println(deckOfCards.get(0).getValue());
-        System.out.println(deckOfCards.get(0).toString());
         deckOfCards.remove(0);
         return tempCard;
     }
