@@ -210,7 +210,6 @@ public class BlackJackLogic implements ActionListener {
         }
         double chanceToNoTGoBust = ((double)cardsLeftThatDoesntMakeUserGoBust / deckOfCards.getDeckOfCards().size()) * 100;
         int roundedChanceToGoBust = (int) Math.floor(100 - chanceToNoTGoBust);
-        System.out.println(roundedChanceToGoBust);
         return roundedChanceToGoBust;
     }
 
