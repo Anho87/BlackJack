@@ -121,7 +121,7 @@ public class BlackJackLogic implements ActionListener {
 
     private void placeBet() {
         currentBet = 0;
-        String answer = JOptionPane.showInputDialog(null, "Place your bet");
+        String answer = JOptionPane.showInputDialog(null, "Välj insats");
         int bet;
         try{
             bet = Integer.parseInt(answer);
@@ -151,8 +151,8 @@ public class BlackJackLogic implements ActionListener {
 
 
     public void setUserValues() {
-        userName = JOptionPane.showInputDialog("Enter player name: ");
-        String capital = JOptionPane.showInputDialog("Enter capital: ");
+        userName = JOptionPane.showInputDialog("Skriv in ditt namn: ");
+        String capital = JOptionPane.showInputDialog("Skriv in ditt kapital: ");
         currentBet = 0;
         try {
             currentCapital = Integer.parseInt(capital);

@@ -94,7 +94,6 @@ public class GUI extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                // Draw the background image
                 g.drawImage(backgroundImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
             }
         };
@@ -103,10 +102,10 @@ public class GUI extends JFrame {
 
 
     private void initiateComponents() {
-        newCard = new JButton("Hit me!");
+        newCard = new JButton("Dra kort!");
         noMoreCards = new JButton("Stop!");
-        newGame = new JButton("New game");
-        rules = new JButton("Rules");
+        newGame = new JButton("Ny omgång");
+        rules = new JButton("Regler");
         exit = new JButton("Exit");
 
         instructions = new JLabel(" ");
@@ -117,15 +116,15 @@ public class GUI extends JFrame {
         cardBack = new ImageIcon("src/Cards/Background/cardBack_blue2.png");
         cardBackLabel = new JLabel(cardBack);
 
-        name = new JLabel("Player name: ");
+        name = new JLabel("Spelarens namn: ");
         name.setForeground(brightYellow);
         name.setFont(labelFont);
 
-        totalCapital = new JLabel("Total Capital: ");
+        totalCapital = new JLabel("Totalt kapital: ");
         totalCapital.setForeground(brightYellow);
         totalCapital.setFont(labelFont);
 
-        currentBet = new JLabel("Current Bet: ");
+        currentBet = new JLabel("Omgångens insats: ");
         currentBet.setForeground(brightYellow);
         currentBet.setFont(labelFont);
 
